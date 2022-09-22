@@ -1,11 +1,11 @@
-import logo from './logo.svg';
-import React from 'react';
-import './App.css';
-import { Link, Route, Router, Routes } from 'react-router-dom';
-import Login from './Components/Login';
-import Register from './Components/Register';
-import TodoBoard from './Components/TodoBoard';
-import AddTodo from './Components/AddTodo';
+import logo from "./logo.svg";
+import React from "react";
+import "./App.css";
+import { Link, Route, Router, Routes } from "react-router-dom";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import TodoBoard from "./Components/TodoBoard";
+import AddTodo from "./Components/AddTodo";
 
 function App() {
   return (
@@ -44,11 +44,9 @@ function App() {
     //   </div>
     // </Router>
 
-    <div className='App'>
-      <AddTodo />
+    <div className="App">
       <TodoBoard></TodoBoard>
     </div>
-
   );
 }
 
