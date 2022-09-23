@@ -9,7 +9,9 @@ function TodoItem(props) {
   return (
     <div style={{ display: "flex" }}>
       <div>
-        <p>{`${todo.title}      Status: ${todo.status.toUpperCase()}`}</p>
+        <p>{`${
+          todo.title
+        }      Status: ${todo.status.toUpperCase()}    Priority: ${todo.priority.toUpperCase()}`}</p>
       </div>
       <button
         onClick={removeTodoHandler}

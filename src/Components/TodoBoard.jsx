@@ -1,36 +1,15 @@
-import React, { Fragment, useEffect, useState } from "react";
-import AddTodo from "./AddTodo";
+import React from "react";
+import classes from "./TodoBoard.module.css";
 import TodoItem from "./TodoItem";
 
-const DUMMY_TODO_LIST = [
-  {
-    id: Math.random().toString(),
-    title: "First title",
-    status: "new",
-  },
-  {
-    id: Math.random().toString(),
-    title: "Second title",
-    status: "new",
-  },
-];
-const TodoBoard = () => {
-  const [todoList, setTodoList] = useState(DUMMY_TODO_LIST);
+function TodoBoard(props) {
+  const backgroundColor = props.backgroundColor || "rgba(255,255,255,0.5)";
+  const height = props.height || "100%";
+  const todoList = props.todoList || [];
 
-  useEffect(() => {
-    setTodoList(DUMMY_TODO_LIST);
-  }, []);
+  const noTodoItem = <p>No item in the list!</p>;
 
-  const onAddNewTodo = (newTodo) => {
-    setTodoList((previousTodoList) => [...previousTodoList, newTodo]);
-  };
-
-  const onRemoveTodo = (id) => {
-    setTodoList((previousTodoList) => [
-      ...previousTodoList.filter((todo) => todo.id === id),
-    ]);
-  };
-
+  const onRemoveTodo = props.onRemoveTodo;
   const getListItems = (todoList) => {
     return todoList.map((todo) => (
       <li key={todo.id}>
@@ -38,14 +17,19 @@ const TodoBoard = () => {
       </li>
     ));
   };
+
   return (
-    <Fragment>
-      <AddTodo addTodo={onAddNewTodo} />
-      <div>
-        <ul>{getListItems(todoList)}</ul>
-      </div>
-    </Fragment>
+    <div className="col-6">
+      <div
+        style={{
+          background: backgroundColor,
+          position: "relative",
+          minHeight: height,
+        }}
+        className={classes.board}
+      ></div>
+    </div>
   );
-};
+}
 
 export default TodoBoard;
