@@ -38,6 +38,10 @@ const listSlice = createSlice({
     },
     removeTodo(state, action) {
       // Remove the item from the list
+      console.log("Removing item " + action.payload);
+      state.todoList = [
+        ...state.todoList.filter((t) => t.id !== action.payload),
+      ];
     },
     updateTodo(state, action) {
       // Update the item

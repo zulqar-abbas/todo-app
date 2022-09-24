@@ -1,11 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { listActions } from "../redux/redux-slices/list-slice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 
 function TodoItem(props) {
-  const { todo, removeTodo } = props;
+  const { todo } = props;
+  const dispatch = useDispatch();
   const removeTodoHandler = () => {
     console.log(todo.id);
-    removeTodo(todo.id);
+    dispatch(listActions.removeTodo(todo.id));
   };
+
   return (
     <div style={{ display: "flex" }}>
       <div>
@@ -13,13 +19,17 @@ function TodoItem(props) {
           todo.title
         }      Status: ${todo.status.toUpperCase()}    Priority: ${todo.priority.toUpperCase()}`}</p>
       </div>
-      <button
+      <FontAwesomeIcon
         onClick={removeTodoHandler}
-        className="btn btn-primary"
-        style={{ marginLeft: "10px" }}
+        icon={faXmarkCircle}
+        style={{
+          marginLeft: "10px",
+          marginTop: "5px",
+          color: "red",
+        }}
       >
         Delete
-      </button>
+      </FontAwesomeIcon>
     </div>
   );
 }
