@@ -1,12 +1,14 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import ListContext from "../context/todo-list";
+import { useDispatch, useSelector } from "react-redux";
+import { listActions } from "../redux/redux-slices/list-slice";
 import AddTodo from "./AddTodo";
 import TodoBoard from "./TodoBoard";
 import TodoItem from "./TodoItem";
 import TodoMatrix from "./TodoMatrix";
 
 const Dashboard = () => {
-  const todoListCtx = useContext(ListContext);
+  const todoListCtx = useSelector((state) => state.list.todoList);
+  const dispatch = useDispatch();
   const [todoList, setTodoList] = useState(todoListCtx);
 
   useEffect(() => {
@@ -14,7 +16,7 @@ const Dashboard = () => {
   }, [todoListCtx]);
 
   const onAddNewTodo = (newTodo) => {
-    setTodoList((previousTodoList) => [...previousTodoList, newTodo]);
+    dispatch(listActions.addTodo(newTodo));
   };
 
   const onRemoveTodo = (id) => {
